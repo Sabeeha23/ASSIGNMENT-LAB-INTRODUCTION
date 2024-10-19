@@ -96,4 +96,71 @@ print("\nSelected columns (name and age):\n", name_and_age)
 ![image](https://github.com/user-attachments/assets/4d778902-db77-4c0b-907e-195b97bd810c)
 
 
+## ACTIVITY 2:
+## 1. Write python code for indexing rows and columns using iloc or loc method based on the following conditions:
+
+a.  select the rows where clients with primary education have subscribed to a deposit?
+
+b.  select the rows where clients who have not subscribed to a deposit?
+
+c. select the rows where clients who have subscribed to a deposit either have a housing or a personal loan?
+
+d. select the rows where clients with secondary education who have not subscribed to a deposit?
+
+e. select the rows where  clients who have subscribed to a term deposit as an outcome of the successful marketing campaign? 
+
+f. select the rows where unemployed clients who have not subscribed to deposit?
+
+e. Select columns 'name' and 'salary' where age is less than or equal to 30:
+
+## CODE
+```
+import pandas as pd
+
+# Sample DataFrame (based on assumed columns)
+data = {'name': ['Alice', 'Bob', 'Charlie', 'Dave'],
+        'age': [25, 35, 40, 28],
+        'salary': [50000, 70000, 60000, 80000],
+        'education': ['primary', 'secondary', 'tertiary', 'secondary'],
+        'deposit': ['yes', 'no', 'yes', 'no'],
+        'housing': ['yes', 'no', 'yes', 'no'],
+        'personal': ['no', 'yes', 'no', 'no'],
+        'job': ['unemployed', 'self-employed', 'student', 'unemployed'],
+        'campaign_outcome': ['success', 'failure', 'success', 'failure']}
+
+df = pd.DataFrame(data)
+
+# a. Select the rows where clients with primary education have subscribed to a deposit
+primary_education_deposit = df.loc[(df['education'] == 'primary') & (df['deposit'] == 'yes')]
+print("Clients with primary education who subscribed to a deposit:\n", primary_education_deposit)
+
+# b. Select the rows where clients who have not subscribed to a deposit
+not_subscribed_deposit = df.loc[df['deposit'] == 'no']
+print("\nClients who have not subscribed to a deposit:\n", not_subscribed_deposit)
+
+# c. Select the rows where clients who have subscribed to a deposit either have a housing or a personal loan
+deposit_with_loans = df.loc[(df['deposit'] == 'yes') & ((df['housing'] == 'yes') | (df['personal'] == 'yes'))]
+print("\nClients who subscribed to a deposit with either housing or personal loan:\n", deposit_with_loans)
+
+# d. Select the rows where clients with secondary education who have not subscribed to a deposit
+secondary_no_deposit = df.loc[(df['education'] == 'secondary') & (df['deposit'] == 'no')]
+print("\nClients with secondary education who have not subscribed to a deposit:\n", secondary_no_deposit)
+
+# e. Select the rows where clients who have subscribed to a term deposit as an outcome of the successful marketing campaign
+successful_campaign_deposit = df.loc[(df['deposit'] == 'yes') & (df['campaign_outcome'] == 'success')]
+print("\nClients who subscribed to a deposit after a successful marketing campaign:\n", successful_campaign_deposit)
+
+# f. Select the rows where unemployed clients who have not subscribed to a deposit
+unemployed_no_deposit = df.loc[(df['job'] == 'unemployed') & (df['deposit'] == 'no')]
+print("\nUnemployed clients who have not subscribed to a deposit:\n", unemployed_no_deposit)
+
+# g. Select columns 'name' and 'salary' where age is less than or equal to 30
+name_salary_age_30 = df.loc[df['age'] <= 30, ['name', 'salary']]
+print("\nClients with name and salary where age is less than or equal to 30:\n", name_salary_age_30)
+```
+## OUTPUT
+![image](https://github.com/user-attachments/assets/df762549-5e45-472b-8083-f843d9cf6fc7)
+
+
+
 
